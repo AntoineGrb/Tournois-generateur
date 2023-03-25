@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+    <link rel ="stylesheet" href = ./public/style.css />
+	<link rel="icon" type="image/png" href="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <script src="script.js" type="module"> </script>
+</head>
+<body>
+
+<main>
+    
+    <div class="param">
+        <div class="param__title">
+            <h1> Paramètres du tournoi </h1>
+        </div>
+        <div class="param__name"> 
+            <p> Nom du tournoi : </p> 
+            <input type="text" maxlength="40">
+        </div>
+        <div class="param__teamscount">
+            <p>Nombre d'équipes : </p> 
+            <select name="teams" id="teams-count" >
+                <option value="4"> 4 </option>
+                <option value="8"> 8 </option>
+                <option value="16"> 16 </option>
+            </select>
+        </div>
+        <div class="param__mode">
+            <p> Mode de tirage : </p>
+            <select name="mode" id="draw-mode">
+                <option value="order"> Dans l'ordre </option>
+                <option value="random"> Aléatoire </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="teams">
+        <div class="teams__title">
+            <h1> Equipes du tournoi </h1>
+        </div>
+        <div class="teams__inputs">
+            <input id="team1" type="text" maxlength="30" placeholder="Equipe 1">
+            <input id="team2" type="text" maxlength="30" placeholder="Equipe 2">
+            <input id="team3" type="text" maxlength="30" placeholder="Equipe 3">
+            <input id="team4" type="text" maxlength="30" placeholder="Equipe 4">
+        </div>
+        <div class="teams__buttons">
+            <button> Valider </button>
+            <button> Annuler </button>
+        </div>
+    </div>
+
+    <div class="tree">
+        <div class="tree__title">
+            <h1> Votre tournoi </h1>
+        </div>
+        <div class="tree__container">
+            <div class="tree__container__round" id="r1">
+                <div class="tree__container__round__match" id="r1-m1">
+                    <div class="tree__container__round__match__team" id="r1-m1-t1" >
+                        <p> Olympique de Marseille </p>
+                    </div>
+                    <div class="tree__container__round__match__team" id="r1-m1-t2" >
+                        <p> Team 2 </p>
+                    </div>
+                </div>
+                <div class="tree__container__round__match" d="r1-m2">
+                    <div class="tree__container__round__match__team" id="r1-m2-t1" >
+                        <p> Team 1 </p>
+                    </div>
+                    <div class="tree__container__round__match__team" id="r1-m2-t2" >
+                        <p> Team 2 </p>
+                    </div>
+                </div>
+                <div class="tree__container__round__match" id="r1-m3">
+                    <div class="tree__container__round__match__team" id="r1-m3-t1" >
+                        <p> Team 1 </p>
+                    </div>
+                    <div class="tree__container__round__match__team" id="r1-m3-t2" >
+                        <p> Team 2 </p>
+                    </div>
+                </div>
+                <div class="tree__container__round__match" id="r1-m4">
+                    <div class="tree__container__round__match__team" id="r1-m4-t1" >
+                        <p> Team 1 </p>
+                    </div>
+                    <div class="tree__container__round__match__team" id="r1-m4-t2" >
+                        <p> Team 2 </p>
+                    </div>
+                </div>
+            </div>
+            <div class="tree__container__round" id="r2">
+                <div class="tree__container__round__match" id="r2-m1">
+                    <div class="tree__container__round__match__team" id="r2-m1-t1" >
+                        <p> Team 1 </p>
+                    </div>
+                    <div class="tree__container__round__match__team" id="r2-m1-t2" >
+                        <p> Team 2 </p>
+                    </div>
+                </div>
+                <div class="tree__container__round__match" id="r2-m2">
+                    <div class="tree__container__round__match__team" id="r2-m2-t1" >
+                        <p> Team 1 </p>
+                    </div>
+                    <div class="tree__container__round__match__team" id="r2-m2-t2" >
+                        <p> Team 2 </p>
+                    </div>
+                </div>
+            </div>
+            <div class="tree__container__round" id="r3">
+                <div class="tree__container__round__match" id="r3-m1">
+                    <div class="tree__container__round__match__team" id="r3-m1-t1" >
+                        <p> Team 1 </p>
+                    </div>
+                    <div class="tree__container__round__match__team" id="r3-m1-t2" >
+                        <p> Team 2 </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

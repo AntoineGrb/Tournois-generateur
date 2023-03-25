@@ -1,0 +1,21 @@
+$smallscreen : 1200px;
+$tablet : 768px;
+$phone : 576px;
+
+@mixin media-max($_max-width) {
+    @media screen and (max-width: $_max-width) {
+       @content;
+    }
+  }
+
+@include media-max($smallscreen) {
+    
+}
+
+@include media-max($tablet) {
+    
+}
+
+@include media-max($phone) {
+    
+}

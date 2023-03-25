@@ -1,0 +1,206 @@
+@import "./utils/fonts";
+@import "./utils/mediasQueries";
+
+//Variables
+$color-theme: #191825;
+$color-main:#E384FF;
+$color-bis:#865DFF;
+$color-third:#FFA3FD;
+
+//Fonts
+p {
+    margin: 0;
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.9rem;
+}
+
+h1 {
+    font-size: 1rem;
+    font-family: 'Work Sans', sans-serif;
+    margin: 0;
+}
+
+
+//All
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: $color-theme;
+}
+
+main {
+    padding: 0 0.8rem 0 0.8rem;
+}
+
+input , select {
+    width: clamp(15rem , 50% , 30rem);
+    margin : 4px 0 8px 0;
+}
+
+input:focus , select:focus {
+        border-color: $color-third;
+        outline: none;
+}
+
+//Parameters
+.param {
+    background-color: $color-theme;
+    border: 1px solid $color-main;
+    width:100%;
+    height: auto;
+    margin-top: 2rem;
+    padding: 2rem 0 1rem 1rem;
+    position: relative;
+
+    &__title {
+        position: absolute;
+        top : - 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 2px 10px 2px 10px;
+        background-color: $color-main;
+        border-radius: 5px;
+    }
+        
+    select option {
+        background-color: $color-theme;
+        color: white;
+
+        &::selection {
+            background-color: $color-main;
+        }
+    }
+}
+
+//Teams
+.teams {
+    background-color: $color-theme;
+    border: 1px solid $color-main;
+    min-width: 100%;
+    height: auto;
+    margin-top: 1.5rem;
+    padding: 2rem 0 1rem 0.5rem;
+    position: relative;
+
+    &__title {
+        position: absolute;
+        top : - 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 2px 10px 2px 10px;
+        background-color: $color-main;
+        border-radius: 5px;
+    }
+
+    &__inputs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+
+        > input {
+            width: clamp(15rem , 45% , 30rem);
+            margin-bottom: 8px;
+        }
+    }
+
+    &__buttons {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+//Buttons
+button {
+    padding: 1rem 1rem;
+    font-size: 0.8rem;
+    font-family: 'Work Sans', sans-serif;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+        background-color: $color-bis;
+        box-shadow: 1px 7px 10px $color-third;
+        color: #fff;
+        transform: translateY(-3px);
+    }
+
+    &:active {
+        transform: translateY(-1px);
+    }
+}
+
+//Tree
+.tree {
+    background-color: $color-theme;
+    border: 1px solid $color-main;
+    min-width: 100%;
+    height: auto;
+    margin-top: 1.5rem;
+    position: relative;
+
+    &__title {
+        position: absolute;
+        top : - 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 2px 10px 2px 10px;
+        background-color: $color-main;
+        border-radius: 5px;
+    }
+
+    &__container {
+        display: flex;
+        justify-content: flex-start;
+        padding: 3rem 0 2rem 0;
+        overflow-x: scroll;
+
+        &__round {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 1rem 0 1rem;
+            width: clamp(250px , 50vw , 500px);
+            height: auto;
+
+            &__match {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                background-color: $color-bis;
+                width: clamp(200px , 40vw , 400px);
+                height: clamp(70px , 10vh , 120px);
+                margin-bottom: 2vh;
+                border: 0;
+                border-radius: 10px;
+                padding: 0 0.4rem 0 0.4rem;
+                position: relative;
+
+                //A compléter pour l'arborescence
+                // ::before {
+                    
+                // }
+
+                // ::after {
+                    
+                // }
+
+                &__team {
+                    background-color: $color-bis;
+                }
+            }
+        }
+    }
+}

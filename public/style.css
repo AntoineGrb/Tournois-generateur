@@ -1,0 +1,199 @@
+@font-face {
+  font-family: "Titillium";
+  src: url("../Polices/Titillium_Web/TitilliumWeb-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Source_Sans_Pro";
+  src: url("../Polices/Source_Sans_Pro/SourceSansPro-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Dosis";
+  src: url("../Polices/Dosis/Dosis-VariableFont_wght.ttf") format("truetype"), url("../Polices/Dosis/dosis-variablefont_wght-webfont.woff2") format("woff2"), url("../Polices/Dosis/dosis-variablefont_wght-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sora";
+  src: url("../Polices/Sora/Sora-VariableFont_wght.ttf") format("truetype"), url("../Polices/Sora/Sora-VariableFont_wght.woff2") format("woff2"), url("../Polices/Sora/Sora-VariableFont_wght.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Bebas_Neue";
+  src: url("../Polices/Bebas_Neue/BebasNeue-Regular.ttf") format("truetype"), url("../Polices/Bebas_Neue/bebasneue-regular-webfont.woff2") format("woff2"), url("../Polices/Bebas_Neue/bebasneue-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+p {
+  margin: 0;
+  color: white;
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.9rem;
+}
+
+h1 {
+  font-size: 1rem;
+  font-family: "Work Sans", sans-serif;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #191825;
+}
+
+main {
+  padding: 0 0.8rem 0 0.8rem;
+}
+
+input, select {
+  width: clamp(15rem, 50%, 30rem);
+  margin: 4px 0 8px 0;
+}
+
+input:focus, select:focus {
+  border-color: #FFA3FD;
+  outline: none;
+}
+
+.param {
+  background-color: #191825;
+  border: 1px solid #E384FF;
+  width: 100%;
+  height: auto;
+  margin-top: 2rem;
+  padding: 2rem 0 1rem 1rem;
+  position: relative;
+}
+.param__title {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 10px 2px 10px;
+  background-color: #E384FF;
+  border-radius: 5px;
+}
+.param select option {
+  background-color: #191825;
+  color: white;
+}
+.param select option::selection {
+  background-color: #E384FF;
+}
+
+.teams {
+  background-color: #191825;
+  border: 1px solid #E384FF;
+  min-width: 100%;
+  height: auto;
+  margin-top: 1.5rem;
+  padding: 2rem 0 1rem 0.5rem;
+  position: relative;
+}
+.teams__title {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 10px 2px 10px;
+  background-color: #E384FF;
+  border-radius: 5px;
+}
+.teams__inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.teams__inputs > input {
+  width: clamp(15rem, 45%, 30rem);
+  margin-bottom: 8px;
+}
+.teams__buttons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+button {
+  padding: 1rem 1rem;
+  font-size: 0.8rem;
+  font-family: "Work Sans", sans-serif;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+button:hover {
+  background-color: #865DFF;
+  box-shadow: 1px 7px 10px #FFA3FD;
+  color: #fff;
+  transform: translateY(-3px);
+}
+button:active {
+  transform: translateY(-1px);
+}
+
+.tree {
+  background-color: #191825;
+  border: 1px solid #E384FF;
+  min-width: 100%;
+  height: auto;
+  margin-top: 1.5rem;
+  position: relative;
+}
+.tree__title {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 10px 2px 10px;
+  background-color: #E384FF;
+  border-radius: 5px;
+}
+.tree__container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 3rem 0 2rem 0;
+  overflow-x: scroll;
+}
+.tree__container__round {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1rem 0 1rem;
+  width: clamp(250px, 50vw, 500px);
+  height: auto;
+}
+.tree__container__round__match {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: #865DFF;
+  width: clamp(200px, 40vw, 400px);
+  height: clamp(70px, 10vh, 120px);
+  margin-bottom: 2vh;
+  border: 0;
+  border-radius: 10px;
+  padding: 0 0.4rem 0 0.4rem;
+  position: relative;
+}
+.tree__container__round__match__team {
+  background-color: #865DFF;
+}
+
+/*# sourceMappingURL=style.css.map */

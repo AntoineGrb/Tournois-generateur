@@ -1,0 +1,50 @@
+@font-face
+{
+    font-family: 'Titillium'; //Police de paragraphe
+    src: url('../Polices/Titillium_Web/TitilliumWeb-Regular.ttf') format('truetype');
+    
+    font-weight: normal;
+    font-style: normal;
+  }
+
+@font-face
+{
+    font-family: 'Source_Sans_Pro'; //Police de paragraphe
+    src: url('../Polices/Source_Sans_Pro/SourceSansPro-Regular.ttf') format('truetype');
+    
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'Dosis'; //Police de paragraphe
+    src: url('../Polices/Dosis/Dosis-VariableFont_wght.ttf') format('truetype'),
+    	 url('../Polices/Dosis/dosis-variablefont_wght-webfont.woff2') format('woff2'),
+         url('../Polices/Dosis/dosis-variablefont_wght-webfont.woff') format('woff');
+    
+    font-weight: normal;
+    font-style: normal;
+  }
+
+@font-face
+{
+    font-family: 'Sora'; //Police de paragraphe
+    src: url('../Polices/Sora/Sora-VariableFont_wght.ttf') format('truetype'),
+        url('../Polices/Sora/Sora-VariableFont_wght.woff2') format('woff2'),
+        url('../Polices/Sora/Sora-VariableFont_wght.woff') format('woff');
+    
+    font-weight: normal;
+    font-style: normal;
+}
+
+ @font-face
+{
+    font-family: 'Bebas_Neue'; //Police de titres
+    src: url('../Polices/Bebas_Neue/BebasNeue-Regular.ttf') format('truetype'),
+    	 url('../Polices/Bebas_Neue/bebasneue-regular-webfont.woff2') format('woff2'),
+         url('../Polices/Bebas_Neue/bebasneue-regular-webfont.woff') format('woff');
+    
+    font-weight: normal;
+    font-style: normal;
+}
