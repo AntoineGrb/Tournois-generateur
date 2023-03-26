@@ -60,7 +60,7 @@ input, select {
 }
 
 input:focus, select:focus {
-  border-color: #FFA3FD;
+  border-color: #FF9551;
   outline: none;
 }
 
@@ -114,7 +114,7 @@ input:focus, select:focus {
   justify-content: space-evenly;
 }
 .teams__inputs > input {
-  width: clamp(15rem, 45%, 30rem);
+  width: clamp(10rem, 45%, 25rem);
   margin-bottom: 8px;
 }
 .teams__buttons {
@@ -124,11 +124,9 @@ input:focus, select:focus {
 }
 
 button {
-  padding: 1rem 1rem;
+  padding: 0.5rem 0.5rem;
   font-size: 0.8rem;
   font-family: "Work Sans", sans-serif;
-  letter-spacing: 2.5px;
-  font-weight: 500;
   color: #000;
   background-color: #fff;
   border: none;
@@ -139,8 +137,8 @@ button {
   outline: none;
 }
 button:hover {
-  background-color: #865DFF;
-  box-shadow: 1px 7px 10px #FFA3FD;
+  background-color: #E384FF;
+  box-shadow: 1px 7px 10px #FF9551;
   color: #fff;
   transform: translateY(-3px);
 }
@@ -149,7 +147,6 @@ button:active {
 }
 
 .tree {
-  background-color: #191825;
   border: 1px solid #E384FF;
   min-width: 100%;
   height: auto;
@@ -170,6 +167,7 @@ button:active {
   justify-content: flex-start;
   padding: 3rem 0 2rem 0;
   overflow-x: scroll;
+  cursor: grab;
 }
 .tree__container__round {
   display: flex;

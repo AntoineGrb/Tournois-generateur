@@ -5,7 +5,7 @@
 $color-theme: #191825;
 $color-main:#E384FF;
 $color-bis:#865DFF;
-$color-third:#FFA3FD;
+$color-third:#FF9551;
 
 //Fonts
 p {
@@ -102,7 +102,7 @@ input:focus , select:focus {
         justify-content: space-evenly;
 
         > input {
-            width: clamp(15rem , 45% , 30rem);
+            width: clamp(10rem , 45% , 25rem);
             margin-bottom: 8px;
         }
     }
@@ -116,11 +116,9 @@ input:focus , select:focus {
 
 //Buttons
 button {
-    padding: 1rem 1rem;
+    padding: 0.5rem 0.5rem;
     font-size: 0.8rem;
     font-family: 'Work Sans', sans-serif;
-    letter-spacing: 2.5px;
-    font-weight: 500;
     color: #000;
     background-color: #fff;
     border: none;
@@ -131,7 +129,7 @@ button {
     outline: none;
 
     &:hover {
-        background-color: $color-bis;
+        background-color: $color-main;
         box-shadow: 1px 7px 10px $color-third;
         color: #fff;
         transform: translateY(-3px);
@@ -144,7 +142,6 @@ button {
 
 //Tree
 .tree {
-    background-color: $color-theme;
     border: 1px solid $color-main;
     min-width: 100%;
     height: auto;
@@ -166,6 +163,7 @@ button {
         justify-content: flex-start;
         padding: 3rem 0 2rem 0;
         overflow-x: scroll;
+        cursor:grab;
 
         &__round {
             display: flex;
