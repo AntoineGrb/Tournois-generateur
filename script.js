@@ -151,7 +151,7 @@ let teamsCount = 4; //Valeur défaut
     //Fonction : cliquer pour passer au prochain tour
     function clickToWin(e) {
         // On récupère les infos avec l'ID de la div sélectionnée
-        const currentId = e.currentTarget.getAttribute("id");
+        const currentId = e.currentTarget.parentElement.getAttribute("id");
         const currentRound = parseInt(currentId.slice(1,2));
         const currentMatch = parseInt(currentId.slice(4,5));
         const currentTeam = parseInt(currentId.slice(7,8));
@@ -170,19 +170,33 @@ let teamsCount = 4; //Valeur défaut
         const nextId = `r${nextRound.toString()}-m${nextMatch.toString()}-t${nextTeam.toString()}`;
         console.log("ID winning team " ,nextId);
 
-        //On envoie l'équipe au tour suivant
-        const winnerTeam = e.currentTarget.querySelector("p").innerText;
-        document.querySelector(`#${nextId} > p `).innerText = winnerTeam;
-
-        //On met en gras le vainqueur
-        e.currentTarget.style.fontWeight = "bold";
-        //On s'assure que l'autre équipe n'est pas en gras
+        //On met en forme le vainqueur et le perdant
+        e.currentTarget.parentElement.style.fontWeight = "bold";
         const currentOtherTeamId = `r${currentRound.toString()}-m${currentMatch.toString()}-t${currentOtherTeam.toString()}`;
         document.getElementById(currentOtherTeamId).style.fontWeight = "normal";
+
+        //^ Si le mode "Score" est activé
+            //On teste le score
+            let currentTeamScore = document.querySelector(`#${currentId} input`).value;
+            let currentOtherTeamScore = document.querySelector(`#${currentOtherTeamId} input`).value;
+            if (currentTeamScore <= currentOtherTeamScore) {
+                alert("Non cohérent");
+                return 
+            }
+
+            //On fige les inputs
+            document.querySelector(`#${currentId} input`).setAttribute("readonly" , "readonly");
+            document.querySelector(`#${currentOtherTeamId} input`).setAttribute("readonly" , "readonly");
+            //^ Ajouter une nouvelle class avec une mise en forme sans les champs inputs
+            //^ Ajouter une icone d'annulation
+
+        //On envoie l'équipe gagnante au tour suivant
+        const winnerTeam = e.currentTarget.parentElement.querySelector("p").innerText;
+        document.querySelector(`#${nextId} > p `).innerText = winnerTeam;
     };
 
     //Event : cliquer sur une div pour passer au prochain tour
-    const teamsDiv = document.querySelectorAll("div[id^=r][id$=t1], div[id^=r][id$=t2]");   
+    const teamsDiv = document.querySelectorAll("div[id^=r][id$=t1] > p, div[id^=r][id$=t2] > p");   
     teamsDiv.forEach(teamDiv => {
         teamDiv.addEventListener("click", (e) => {
             clickToWin(e);

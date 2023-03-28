@@ -215,8 +215,20 @@ button {
                 }
 
                 &__team {
-                    background-color: $color-bis;
                     height: 30%;
+                    display: flex;
+                    justify-content: space-between;
+
+                    &__score {
+                        height: 100%;
+                        width: 15%;
+
+                        > input {
+                            width: 100%;
+                            margin: 0;
+                            text-align: center;
+                        }
+                    }
                 }
 
                 // //Branches verticales pour les matchs impairs
