@@ -138,6 +138,7 @@ let teamsCount = 4; //Valeur défaut
         //Réactive la sélection des paramètres et affiche le bouton Valider
         e.target.style.display = "none";
         document.querySelector("#teams-count").disabled = false; 
+        document.querySelector("#teams-count").value = 4; 
         document.querySelector("#tournament-name").disabled = false;
         document.querySelector("#tournament-name").value = "";
         document.querySelector("#draw-mode").disabled = false;
@@ -188,4 +189,38 @@ let teamsCount = 4; //Valeur défaut
         });
     });
 
+//#endregion
+
+//#region SCROLL-GRAB SUR L'ARBRE DE TOURNOI
+    const slider = document.querySelector(".tree__container")
+    let startX;
+    let scrollLeft;
+    let isDown = false;
+
+    //Les évènements de souris
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.classList.add('active');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+
+      slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.classList.remove('active');
+      });
+
+      slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove('active');
+      });
+      
+      slider.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 3; //scroll-fast
+        slider.scrollLeft = scrollLeft - walk;
+        console.log(walk);
+      });
 //#endregion

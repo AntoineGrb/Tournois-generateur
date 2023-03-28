@@ -32,11 +32,11 @@ p {
   margin: 0;
   color: white;
   font-family: "Work Sans", sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.9em;
 }
 
 h1 {
-  font-size: 1rem;
+  font-size: 1em;
   font-family: "Work Sans", sans-serif;
   margin: 0;
 }
@@ -68,6 +68,7 @@ input:focus, select:focus {
   background-color: #191825;
   border: 1px solid #E384FF;
   width: 100%;
+  max-width: 1000px;
   height: auto;
   margin-top: 2rem;
   padding: 2rem 0 1rem 1rem;
@@ -93,7 +94,8 @@ input:focus, select:focus {
 .teams {
   background-color: #191825;
   border: 1px solid #E384FF;
-  min-width: 100%;
+  width: 100%;
+  max-width: 1000px;
   height: auto;
   margin-top: 1.5rem;
   padding: 2rem 0 1rem 0.5rem;
@@ -114,7 +116,7 @@ input:focus, select:focus {
   justify-content: space-evenly;
 }
 .teams__inputs > input {
-  width: clamp(10rem, 45%, 25rem);
+  width: clamp(10rem, 45%, 35rem);
   margin-bottom: 8px;
 }
 .teams__buttons {
@@ -170,12 +172,24 @@ button {
   background-color: #E384FF;
   border-radius: 5px;
 }
+.tree__name {
+  align-self: center;
+  margin-top: 30px;
+}
+.tree__name > h2 {
+  margin: 0;
+}
 .tree__container {
   display: flex;
   justify-content: flex-start;
   padding: 3rem 0 2rem 0;
   overflow-x: scroll;
+  overflow-y: hidden;
   cursor: grab;
+}
+.tree__container.active {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
 }
 .tree__container__round {
   display: flex;
@@ -198,9 +212,33 @@ button {
   padding: 0 0.4rem 0 0.4rem;
   position: relative;
 }
+.tree__container__round__match:hover {
+  cursor: pointer;
+}
 .tree__container__round__match__team {
   background-color: #865DFF;
   height: 30%;
+}
+
+@media screen and (min-width: 1000px) {
+  h1 {
+    font-size: 1.1em;
+  }
+  p {
+    font-size: 1em;
+  }
+  .tree {
+    margin-top: 3rem;
+  }
+  .tree__container__round {
+    padding: 0 4rem 0 1rem;
+  }
+  .tree__container__round__match {
+    margin-bottom: 4vh;
+  }
+  footer {
+    height: 100px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

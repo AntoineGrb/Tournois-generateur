@@ -12,11 +12,11 @@ p {
     margin: 0;
     color: white;
     font-family: 'Work Sans', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.9em;
 }
 
 h1 {
-    font-size: 1rem;
+    font-size: 1em;
     font-family: 'Work Sans', sans-serif;
     margin: 0;
 }
@@ -51,6 +51,7 @@ input:focus , select:focus {
     background-color: $color-theme;
     border: 1px solid $color-main;
     width:100%;
+    max-width: 1000px;
     height: auto;
     margin-top: 2rem;
     padding: 2rem 0 1rem 1rem;
@@ -80,7 +81,8 @@ input:focus , select:focus {
 .teams {
     background-color: $color-theme;
     border: 1px solid $color-main;
-    min-width: 100%;
+    width:100%;
+    max-width: 1000px;
     height: auto;
     margin-top: 1.5rem;
     padding: 2rem 0 1rem 0.5rem;
@@ -102,7 +104,7 @@ input:focus , select:focus {
         justify-content: space-evenly;
 
         > input {
-            width: clamp(10rem , 45% , 25rem);
+            width: clamp(10rem , 45% , 35rem);
             margin-bottom: 8px;
         }
     }
@@ -165,12 +167,27 @@ button {
         border-radius: 5px;
     }
 
+    &__name {
+        align-self: center;
+        margin-top: 30px;
+
+        > h2 {
+            margin: 0;
+        }
+    }
+
     &__container {
         display: flex;
         justify-content: flex-start;
         padding: 3rem 0 2rem 0;
         overflow-x: scroll;
+        overflow-y: hidden;
         cursor:grab;
+
+        &.active {
+            cursor: grabbing;
+            cursor: -webkit-grabbing;
+        }
 
         &__round {
             display: flex;
@@ -192,6 +209,10 @@ button {
                 border-radius: 10px;
                 padding: 0 0.4rem 0 0.4rem;
                 position: relative;
+
+                &:hover{
+                    cursor: pointer;
+                }
 
                 &__team {
                     background-color: $color-bis;
@@ -223,3 +244,32 @@ button {
         }
     }
 }
+
+//Media queries
+@media screen and (min-width: $smallscreen) {
+
+        h1 {
+            font-size: 1.1em;
+        }
+
+        p {
+            font-size: 1em;
+        }
+
+       .tree {
+        margin-top: 3rem;
+       }
+
+       .tree__container__round {
+        padding: 0 4rem 0 1rem;
+
+            &__match {
+                margin-bottom: 4vh;
+            }
+       }
+
+       footer {
+        height: 100px;
+       }
+
+  }
