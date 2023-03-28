@@ -136,14 +136,22 @@ button {
   cursor: pointer;
   outline: none;
 }
-button:hover {
+
+#button__valider {
+  display: block;
+}
+#button__valider:hover {
   background-color: #E384FF;
   box-shadow: 1px 7px 10px #FF9551;
   color: #fff;
   transform: translateY(-3px);
 }
-button:active {
+#button__valider:active {
   transform: translateY(-1px);
+}
+
+#button__annuler {
+  display: none;
 }
 
 .tree {
@@ -172,7 +180,7 @@ button:active {
 .tree__container__round {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   padding: 0 1rem 0 1rem;
   width: clamp(250px, 50vw, 500px);
   height: auto;
@@ -192,6 +200,7 @@ button:active {
 }
 .tree__container__round__match__team {
   background-color: #865DFF;
+  height: 30%;
 }
 
 /*# sourceMappingURL=style.css.map */
