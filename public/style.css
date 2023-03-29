@@ -216,8 +216,18 @@ button {
   cursor: pointer;
 }
 .tree__container__round__match__team {
-  background-color: #865DFF;
   height: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+.tree__container__round__match__team__score {
+  height: 100%;
+  width: 15%;
+}
+.tree__container__round__match__team__score > input {
+  width: 100%;
+  margin: 0;
+  text-align: center;
 }
 
 @media screen and (min-width: 1000px) {
