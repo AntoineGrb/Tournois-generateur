@@ -228,30 +228,12 @@ button {
                             margin: 0;
                             text-align: center;
                         }
+
+                        .input--disabled {
+                            background-color: green;
+                        }
                     }
                 }
-
-                // //Branches verticales pour les matchs impairs
-                // &:nth-child(odd)::before {
-                //     content: '';
-                //     position: absolute;
-                //     top: 50%;
-                //     right: -1rem;
-                //     width: 1px;
-                //     height: calc(7vh + 50%);
-                //     background-color: white;
-                // }
-                
-                // //Branches horizontales pour tous les matchs sauf le dernier match du dernier round
-                // &:nth-child(2n-1)::after {
-                //     content: '';
-                //     position: absolute;
-                //     bottom: 0%;
-                //     right: -2rem;
-                //     width: 1rem;
-                //     height: 1px;
-                //     background-color: white;
-                // }
             }
         }
     }

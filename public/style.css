@@ -229,6 +229,9 @@ button {
   margin: 0;
   text-align: center;
 }
+.tree__container__round__match__team__score .input--disabled {
+  background-color: green;
+}
 
 @media screen and (min-width: 1000px) {
   h1 {
