@@ -6,7 +6,7 @@ let matchs = 2;
 
 
 //#region CREATION DE L'ARBRE DE TOURNOI
-    //& Création des inputs
+    // Fonction : Création des inputs
     function createInputs(teamsCount) {
         const teamsInputs = document.querySelector(".teams__inputs");
         teamsInputs.innerHTML = "";
@@ -15,13 +15,13 @@ let matchs = 2;
             let input = document.createElement("input");
             input.setAttribute("id" , `input-team${team}`);
             input.setAttribute("type" , "text");
-            input.setAttribute("maxlength" , "30");
+            input.setAttribute("maxlength" , 30);
             input.setAttribute("placeholder" , `Equipe ${team}`);
             teamsInputs.appendChild(input);
         }
     }
 
-    //& Création de l'arbre
+    // Fonction : Création de l'arbre
     function createTree(teamsCount) {
         const treeContainer = document.querySelector(".tree__container");
         treeContainer.innerHTML = "";
@@ -79,14 +79,17 @@ let matchs = 2;
     teamsSelect.addEventListener("change" , (e) => {
         e.preventDefault();
         teamsCount = e.target.value;
+        //! Enregistrer dans le local Storage
         createInputs(teamsCount);
         createTree(teamsCount);
         scoreModeSelect.value = "no-score"; //Remet le mode score à sa valeur initiale
+
+        
     });
 //#endregion
 
-//#region GERER LE MODE MODE SCORES
-    //& Activer le mode score
+//#region ACTIVATION / DESACTIVATION DU MODE SCORES
+    //Fonction : Activer le mode score
     function addScoreInputs(teamsCount) {
         rounds = Math.log2(teamsCount);
 
@@ -97,13 +100,17 @@ let matchs = 2;
 
                 for (let team = 1 ; team <= 2 ; team++) {
                     let teamDiv = document.querySelector(`#r${round}-m${match}-t${team}-s`);
-                    teamDiv.appendChild(document.createElement("input"));
+                    let inputDiv = document.createElement("input");
+                    inputDiv.setAttribute("type" , "number");
+                    inputDiv.setAttribute("max" , 99);
+                    inputDiv.setAttribute("min" , 0);
+                    teamDiv.appendChild(inputDiv);
                 };
             };
         };
     };
 
-    //& Retirer le mode score
+    //Fonction : Retirer le mode score
     function removeScoreInputs(teamsCount) {
         rounds = Math.log2(teamsCount);
 
@@ -124,7 +131,7 @@ let matchs = 2;
     };
 
     //* Event : mettre à jour le mode score sur l'arbre
-    const scoreModeSelect = document.querySelector("#score-mode")
+    const scoreModeSelect = document.querySelector("#score-mode");
 
     scoreModeSelect.addEventListener("change" , (e) => {
         e.preventDefault();
@@ -135,6 +142,7 @@ let matchs = 2;
             removeScoreInputs(teamsCount);
         }
     });
+    //! Enregistrer dans local Storage ?
 //#endregion
 
 //#region VALIDER LE TOURNOI 
@@ -188,6 +196,8 @@ let matchs = 2;
             document.querySelector("#draw-mode").disabled = true;
             document.querySelector("#score-mode").disabled = true;
             document.querySelector("#button__annuler").style.display = "block"; //Affiche le bouton Annuler 
+
+            //! Enregistrer toutes les variables dans local Storage ?
     });
 //#endregion
 
@@ -208,12 +218,14 @@ let matchs = 2;
         document.querySelector("#draw-mode").disabled = false;
         document.querySelector("#score-mode").disabled = false;
         document.querySelector("#button__valider").style.display = "block";   
+
+        //! Remove from local Storage ?
     });
 //#endregion
 
 //#region DETERMINER LE VAINQUEUR D'UN MATCH ET PASSAGE AU TOUR SUIVANT
 
-    //& Cliquer pour passer au prochain tour
+    //FOnction : Cliquer pour passer au prochain tour
     function clickToWin(e) {
         // On récupère les infos avec l'ID de la div sélectionnée
         const currentId = e.currentTarget.parentElement.getAttribute("id");
@@ -246,7 +258,7 @@ let matchs = 2;
                 alert("Renseigner le score du match");
                 return 
             }
-            if (currentTeamScore <= currentOtherTeamScore) {
+            if (currentTeamScore < currentOtherTeamScore) {
                 alert("Le score n'est pas cohérent avec le vainqueur du match");
                 return 
             }

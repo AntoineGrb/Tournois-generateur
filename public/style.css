@@ -1,3 +1,33 @@
+@font-face {
+  font-family: "Titillium";
+  src: url("../Polices/Titillium_Web/TitilliumWeb-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Source_Sans_Pro";
+  src: url("../Polices/Source_Sans_Pro/SourceSansPro-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Dosis";
+  src: url("../Polices/Dosis/Dosis-VariableFont_wght.ttf") format("truetype"), url("../Polices/Dosis/dosis-variablefont_wght-webfont.woff2") format("woff2"), url("../Polices/Dosis/dosis-variablefont_wght-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sora";
+  src: url("../Polices/Sora/Sora-VariableFont_wght.ttf") format("truetype"), url("../Polices/Sora/Sora-VariableFont_wght.woff2") format("woff2"), url("../Polices/Sora/Sora-VariableFont_wght.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Bebas_Neue";
+  src: url("../Polices/Bebas_Neue/BebasNeue-Regular.ttf") format("truetype"), url("../Polices/Bebas_Neue/bebasneue-regular-webfont.woff2") format("woff2"), url("../Polices/Bebas_Neue/bebasneue-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 p {
   margin: 0;
   color: white;
@@ -174,7 +204,7 @@ button {
   flex-direction: column;
   justify-content: space-evenly;
   background-color: #865DFF;
-  width: clamp(200px, 40vw, 400px);
+  width: clamp(220px, 40vw, 350px);
   height: clamp(70px, 10vh, 120px);
   margin-bottom: 2vh;
   border: 0;
@@ -190,6 +220,10 @@ button {
   display: flex;
   justify-content: space-between;
 }
+.tree__container__round__match__team > p {
+  width: 85%;
+  overflow: hidden;
+}
 .tree__container__round__match__team__score {
   height: 100%;
   width: 15%;
@@ -200,7 +234,9 @@ button {
   text-align: center;
 }
 .tree__container__round__match__team__score .input--disabled {
-  background-color: green;
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 3px;
 }
 
 @media screen and (min-width: 1000px) {
