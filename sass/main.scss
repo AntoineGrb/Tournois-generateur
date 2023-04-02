@@ -58,6 +58,8 @@ input:focus , select:focus {
     position: relative;
 
     &__title {
+        width: clamp(150px , 60vw , 300px);
+        text-align: center;
         position: absolute;
         top : - 10px;
         left: 50%;
@@ -89,6 +91,8 @@ input:focus , select:focus {
     position: relative;
 
     &__title {
+        width: clamp(150px , 60vw , 300px);
+        text-align: center;
         position: absolute;
         top : - 10px;
         left: 50%;
@@ -155,9 +159,12 @@ button {
     min-width: 100%;
     height: auto;
     margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
     position: relative;
 
     &__title {
+        width: clamp(150px , 60vw , 300px);
+        text-align: center;
         position: absolute;
         top : - 10px;
         left: 50%;
@@ -218,6 +225,7 @@ button {
                     height: 30%;
                     display: flex;
                     justify-content: space-between;
+                    align-items: center;
 
                     > p {
                         width: 85%;
