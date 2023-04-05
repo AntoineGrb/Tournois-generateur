@@ -1,4 +1,4 @@
-//Zones de sélection
+//Sélection HTML
 const tournamentName = document.querySelector("#tournament-name");
 const teamsSelect = document.querySelector("#teams-count");
 const drawMode = document.querySelector("#draw-mode");
@@ -10,18 +10,25 @@ const buttonValider = document.querySelector("#button__valider");
 let teamsArray = [];
 let rounds = 2;
 let matchs = 2;
-
-//Local storage 
-let objectStorage = {
+let teamsCount;
+let scoreMode;
+//Local storage  
+let dataMatchs = [];
+let dataMatchsObject = {
     id:"",
     name:"",
     score:0,   
 };
+let dataParamObject = {
+    teamsCount: 4,
+    scoreMode: "no-score",
+    tournamentName: "",
+    tournamentDate: "",
+}
 
-//#region RECUPERER DATA DU LOCAL STORAGE
-   let dataStorage = window.localStorage.getItem("dataStorage");
-   let teamsCount = window.localStorage.getItem("teamsCount");
-   let isScoreMode = window.localStorage.getItem("dataScoreMode");
+//#region RECUPERER DATA FROM LOCAL STORAGE
+   dataMatchs = window.localStorage.getItem("dataMatchs");
+   dataParamObject = window.localStorage.getItem("dataParamObject");
 
    function disabledParameters() {
     tournamentName.disabled = true;
@@ -31,36 +38,59 @@ let objectStorage = {
     buttonValider.style.display = "none";
     buttonAnnuler.style.display = "block"; //Affiche le bouton Annuler
 }
-
-    if (dataStorage !== null) {
+    //Si data dans le local Storage
+    if (dataMatchs !== null) {
         //Parser les data
-        dataStorage = JSON.parse(dataStorage);
-        teamsCount = JSON.parse(teamsCount);
-        isScoreMode = JSON.parse(isScoreMode);
-        console.log("DataStorage = " , dataStorage);
+        dataMatchs = JSON.parse(dataMatchs);
+        dataParamObject = JSON.parse(dataParamObject);
+        console.log("dataMatchs = " , dataMatchs);
+        console.log("dataParamObj = " , dataParamObject);
+        teamsCount = dataParamObject.teamsCount;
+        scoreMode = dataParamObject.scoreMode;
 
         //Lancer les fonctions
         createTree(teamsCount);
-        if (isScoreMode === true) {
+        if (scoreMode === "score") {
             addScoreInputs(teamsCount);
         }
-
         disabledParameters();
 
         function updateMatchs() {
-            for (i = 0 ; i < dataStorage.length ; i++) {
-                const teamId = dataStorage[i].objectStorage.id;
-                const teamName = dataStorage[i].objectStorage.name;
-                const teamScore = dataStorage[i].objectStorage.score;
-                document.querySelector(`#${teamId} > p`).innerText = teamName;
-                document.querySelector(`#${teamId} > input`).innerText = teamScore;
+            for (let i = 0 ; i < dataMatchs.length ; i++) {
+                const teamId = dataMatchs[i].id;
+                const teamName = dataMatchs[i].name;
+                const teamScore = dataMatchs[i].score;
+                console.log("teamId : " , teamId);
+                console.log("teamName : " , teamName);
+                console.log("teamScore : " , teamScore);
+                const teamElement = document.querySelector(`#${teamId} > p`);
+                const inputElement = document.querySelector(`#${teamId} input`);
+                //! Need le contrôle sur les saisies. Pourquoi il ne s'active pas ?
+                console.log(document.querySelector(`#${teamId} input`))
+            
+                if (teamElement) {
+                  teamElement.innerText = teamName;
+                }
+            
+                if (teamScore !== undefined && teamScore !== null && inputElement) {
+                  console.log(teamScore);
+                  inputElement.value = teamScore;
+                }
             }
         }
+        updateMatchs();
     }
+    //Si pas de data dans le local storage, on rénitialise les valeurs
     else {
-        dataStorage = [];
-        isScoreMode = false;
-        teamsCount = 4;
+        dataMatchs = [];
+        dataParamObject = {
+            teamsCount: 4,
+            scoreMode: "no-score",
+            tournamentName: "",
+            tournamentDate: "",
+        }
+        teamsCount = dataParamObject.teamsCount;
+        scoreMode = dataParamObject.scoreMode;
     }
 //#endregion
 
@@ -142,8 +172,9 @@ let objectStorage = {
         scoreModeSelect.value = "no-score"; //Remet le mode score à sa valeur initiale
 
         //Save dans le local Storage
-        window.localStorage.setItem("teamsCount" , JSON.stringify(teamsCount));
-        console.log("teamsCount" , JSON.stringify(teamsCount));
+        dataParamObject.teamsCount = teamsCount;
+        window.localStorage.setItem("dataParamObject" , JSON.stringify(dataParamObject));
+        console.log("dataParamObject" , JSON.stringify(dataParamObject));
     });
 //#endregion
 
@@ -194,16 +225,17 @@ let objectStorage = {
         e.preventDefault();
         if (e.target.value === "score") {
             addScoreInputs(teamsCount);
-            isScoreMode = true;
+            scoreMode = "score";
         }
         else if (e.target.value === "no-score") {
             removeScoreInputs(teamsCount);
-            isScoreMode = false;
+            scoreMode = "no-score";
         }
+        //Save dans le local Storage
+        dataParamObject.scoreMode = scoreMode;
+        window.localStorage.setItem("dataParamObject" , JSON.stringify(dataParamObject));
+        console.log("dataParamObject" , JSON.stringify(dataParamObject));
     });
-
-     //Save dans le local Storage
-     window.localStorage.setItem("dataScoreMode" , JSON.stringify(isScoreMode));
     
 //#endregion
 
@@ -229,7 +261,6 @@ let objectStorage = {
             for (let team = 1 ; team <= teamsCount ; team++) {
                 const teamInputName = document.querySelector(`#input-team${team}`).value;
                 teamsArray.push(teamInputName);
-                console.log("inputName = " , teamInputName);
             };
 
             //^ Si mode Random : mélange le tableau
@@ -256,17 +287,31 @@ let objectStorage = {
                     teamIndex++;
 
                     //Save dans le local Storage
-                    objectStorage = {
+                    dataMatchsObject = {
                         id:`r0-m${match}-t${team}`,
                         name:teamDivName.innerText,
                     }
-                    dataStorage.push(objectStorage);
-                console.log("dataStorage" , dataStorage);
+                    dataMatchs.push(dataMatchsObject);
+                console.log("dataMatchs" , dataMatchs);
                 };
             };
 
-            window.localStorage.setItem("dataStorage" , JSON.stringify(dataStorage));
+            //Save dans le local Storage
+            window.localStorage.setItem("dataMatchs" , JSON.stringify(dataMatchs));
+            // window.localStorage.setItem("dataId" , JSON.stringify(dataMatchs));
 
+            //Ajoute le nom et la date du tournoi
+            let tournamentName = document.querySelector("#tournament-name").value;
+            document.querySelector(".tree__id__name").innerText = `${tournamentName} - ` ;
+            const date = new Date();
+            let todayDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+            document.querySelector(".tree__id__date").innerText = todayDate;
+            
+            //Save dans le local Storage
+            dataParamObject.tournamentName = tournamentName;
+            dataParamObject.tournamentDate = todayDate;
+            window.localStorage.setItem("dataParamObject" , JSON.stringify(dataParamObject));
+            
             //Désactive la sélection des paramètres une fois validé
             disabledParameters();
     });
@@ -291,11 +336,17 @@ let objectStorage = {
         buttonValider.style.display = "block";   
 
         // Remove from local Storage
-        window.localStorage.removeItem("teamsCount");
-        window.localStorage.removeItem("dataScoreMode");
-        window.localStorage.removeItem("dataStorage");
-        dataStorage = [];
-
+        window.localStorage.removeItem("dataParamObject");
+        window.localStorage.removeItem("dataMatchs");
+        dataMatchs = [];
+        dataParamObject = {
+            teamsCount: 4,
+            scoreMode: "no-score",
+            tournamentName: "",
+            tournamentDate: "",
+        };
+        console.log("dataParamObject" , JSON.stringify(dataParamObject));
+        console.log("dataMatchs" , JSON.stringify(dataMatchs));
     });
 //#endregion
 
@@ -341,8 +392,10 @@ let objectStorage = {
             //^On fige les inputs et on met en forme les scores validés
             document.querySelector(`#${currentId} input`).setAttribute("readonly" , "readonly");
             document.querySelector(`#${currentId} input`).classList.add("input--disabled");
+            document.querySelector(`#${currentId} input`).style.backgroundColor = "lightgreen";
             document.querySelector(`#${currentOtherTeamId} input`).setAttribute("readonly" , "readonly");
             document.querySelector(`#${currentOtherTeamId} input`).classList.add("input--disabled");
+            document.querySelector(`#${currentOtherTeamId} input`).style.backgroundColor = "lightcoral";
 
             //^Save dans le local Storage
                 //^ Récupérer et sauvegarder le score
@@ -361,10 +414,10 @@ let objectStorage = {
                         console.log("Aucun objet trouvé avec l'id donné");
                     }
                 };
-                saveScoreById(dataStorage , currentId , currentTeamScore , currentOtherTeamId , currentOtherTeamScore);
+                saveScoreById(dataMatchs , currentId , currentTeamScore , currentOtherTeamId , currentOtherTeamScore);
 
-            window.localStorage.setItem("dataStorage" , JSON.stringify(dataStorage));
-            console.log("dataStorage" , JSON.stringify(dataStorage));
+            window.localStorage.setItem("dataMatchs" , JSON.stringify(dataMatchs));
+            console.log("dataMatchs" , JSON.stringify(dataMatchs));
         }; 
 
         //On met en forme le vainqueur et le perdant
@@ -376,12 +429,13 @@ let objectStorage = {
         document.querySelector(`#${nextId} > p `).innerText = winnerTeam;
 
         //Save dans le local Storage
-        objectStorage = {
+        dataMatchsObject = {
             id:nextId,
             name:winnerTeam,
         }
-        dataStorage.push(objectStorage);
-        console.log("dataStorage" , dataStorage);
+        dataMatchs.push(dataMatchsObject);
+        window.localStorage.setItem("dataMatchs" , JSON.stringify(dataMatchs));
+        console.log("dataMatchs" , dataMatchs);
     };
 
     //* Event : cliquer sur une équipe
@@ -425,4 +479,8 @@ let objectStorage = {
         slider.scrollLeft = scrollLeft - walk;
         console.log(walk);
       });
+//#endregion
+
+//#region IMPRIMER L'ARBRE
+
 //#endregion

@@ -1,33 +1,3 @@
-@font-face {
-  font-family: "Titillium";
-  src: url("../Polices/Titillium_Web/TitilliumWeb-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Source_Sans_Pro";
-  src: url("../Polices/Source_Sans_Pro/SourceSansPro-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Dosis";
-  src: url("../Polices/Dosis/Dosis-VariableFont_wght.ttf") format("truetype"), url("../Polices/Dosis/dosis-variablefont_wght-webfont.woff2") format("woff2"), url("../Polices/Dosis/dosis-variablefont_wght-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Sora";
-  src: url("../Polices/Sora/Sora-VariableFont_wght.ttf") format("truetype"), url("../Polices/Sora/Sora-VariableFont_wght.woff2") format("woff2"), url("../Polices/Sora/Sora-VariableFont_wght.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Bebas_Neue";
-  src: url("../Polices/Bebas_Neue/BebasNeue-Regular.ttf") format("truetype"), url("../Polices/Bebas_Neue/bebasneue-regular-webfont.woff2") format("woff2"), url("../Polices/Bebas_Neue/bebasneue-regular-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
 p {
   margin: 0;
   color: white;
@@ -160,6 +130,14 @@ button {
   display: none;
 }
 
+.fa-floppy-disk {
+  font-size: 1.5rem;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+}
+
 .tree {
   border: 1px solid #E384FF;
   min-width: 100%;
@@ -265,6 +243,14 @@ button {
   }
   footer {
     height: 100px;
+  }
+}
+@media print {
+  .teams, .param {
+    display: none;
+  }
+  .tree__container {
+    display: block;
   }
 }
 

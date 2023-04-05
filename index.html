@@ -5,10 +5,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
     <link rel ="stylesheet" href = ./public/style.css />
-	<link rel="icon" type="image/png" href="" />
+	<link rel="icon" type="image/png" href="Images/ballon-de-football (1).png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5c520df75a.js" crossorigin="anonymous"></script>
     <script src="script.js" type="module"> </script>
 </head>
 <body>
@@ -68,9 +69,8 @@
         <div class="tree__title">
             <h1> Ton tournoi </h1>
         </div>
-        <!-- <div class="tree__name">
-            <h2> Tournoi fifa </h2>
-        </div> -->
+        <i class="fa-solid fa-floppy-disk" title="Imprimer l'arbre de tournoi" style="color: #e384f5;" 
+        onClick="window.print()"></i>
         <div class="tree__container">
             <div class="tree__container__round" id="r0">
                 <div class="tree__container__round__match" id="r0-m1">
@@ -113,6 +113,7 @@
                 </div>
             </div>
         </div>
+        <div class="tree__id"> <p> <span class="tree__id__name" > </span><span class="tree__id__date"> </span> </p> </div>
     </div>
 </main>
 <footer>
