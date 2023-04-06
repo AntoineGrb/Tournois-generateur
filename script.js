@@ -30,14 +30,37 @@ let dataParamObject = {
    dataMatchs = window.localStorage.getItem("dataMatchs");
    dataParamObject = window.localStorage.getItem("dataParamObject");
 
-   function disabledParameters() {
-    tournamentName.disabled = true;
-    teamsSelect.disabled = true; 
-    drawMode.disabled = true;
-    scoreModeSelect.disabled = true;
-    buttonValider.style.display = "none";
-    buttonAnnuler.style.display = "block"; //Affiche le bouton Annuler
-}
+    //Déclaration des fonctions utilisées
+    function disabledParameters() {
+        tournamentName.disabled = true;
+        teamsSelect.disabled = true; 
+        drawMode.disabled = true;
+        scoreModeSelect.disabled = true;
+        buttonValider.style.display = "none";
+        buttonAnnuler.style.display = "block";
+    }
+    function updateMatchs() {
+        for (let i = 0 ; i < dataMatchs.length ; i++) {
+            const teamId = dataMatchs[i].id;
+            const teamName = dataMatchs[i].name;
+            const teamScore = dataMatchs[i].score;
+            console.log("teamId : " , teamId);
+            console.log("teamName : " , teamName);
+            console.log("teamScore : " , teamScore);
+            const teamElement = document.querySelector(`#${teamId} > p`);
+            const inputElement = document.querySelector(`#${teamId} input`);
+        
+            if (teamElement) {
+              teamElement.innerText = teamName;
+            }
+        
+            if (teamScore !== undefined && teamScore !== null && inputElement) {
+              inputElement.value = teamScore;
+              inputElement.setAttribute("readonly" , "readonly");
+            }
+        }
+    }
+
     //Si data dans le local Storage
     if (dataMatchs !== null) {
         //Parser les data
@@ -45,39 +68,19 @@ let dataParamObject = {
         dataParamObject = JSON.parse(dataParamObject);
         console.log("dataMatchs = " , dataMatchs);
         console.log("dataParamObj = " , dataParamObject);
+
+        //Récupérer les valeurs sauvegardées
         teamsCount = dataParamObject.teamsCount;
-        scoreMode = dataParamObject.scoreMode;
+        scoreMode = dataParamObject.scoreMode;  
+        document.querySelector(".tree__id__name").innerText = dataParamObject.tournamentName ;
+        document.querySelector(".tree__id__date").innerText = dataParamObject.tournamentDate; 
 
         //Lancer les fonctions
-        createTree(teamsCount);
+        createTree(teamsCount , true); //true car première création d'arbre au rechargement
         if (scoreMode === "score") {
             addScoreInputs(teamsCount);
         }
         disabledParameters();
-
-        function updateMatchs() {
-            for (let i = 0 ; i < dataMatchs.length ; i++) {
-                const teamId = dataMatchs[i].id;
-                const teamName = dataMatchs[i].name;
-                const teamScore = dataMatchs[i].score;
-                console.log("teamId : " , teamId);
-                console.log("teamName : " , teamName);
-                console.log("teamScore : " , teamScore);
-                const teamElement = document.querySelector(`#${teamId} > p`);
-                const inputElement = document.querySelector(`#${teamId} input`);
-                //! Need le contrôle sur les saisies. Pourquoi il ne s'active pas ?
-                console.log(document.querySelector(`#${teamId} input`))
-            
-                if (teamElement) {
-                  teamElement.innerText = teamName;
-                }
-            
-                if (teamScore !== undefined && teamScore !== null && inputElement) {
-                  console.log(teamScore);
-                  inputElement.value = teamScore;
-                }
-            }
-        }
         updateMatchs();
     }
     //Si pas de data dans le local storage, on rénitialise les valeurs
@@ -111,7 +114,8 @@ let dataParamObject = {
     }
 
     // Fonction : Création de l'arbre
-    function createTree(teamsCount) {
+    function createTree(teamsCount , firstLoad = false) { //Deuxième paramètre pour ne charger qu'une fois les écouteurs d'event
+        console.log("inside create tree avec teamsCount = " , teamsCount);
         const treeContainer = document.querySelector(".tree__container");
         treeContainer.innerHTML = "";
         
@@ -136,6 +140,14 @@ let dataParamObject = {
                     teamDiv.setAttribute("class" , "tree__container__round__match__team");
                     teamDiv.setAttribute("id" , `r${round}-m${match}-t${team}`);
                     let teamDivName = document.createElement("p");
+
+                    //Ajouter l'écouteur d'évènement sur chaque matchDiv
+                    if (!firstLoad) {
+                        teamDivName.addEventListener("click", (e) => {
+                            console.log("inside EVENT CREATE TREE")
+                            clickToWin(e);
+                        });
+                    }
                     teamDiv.appendChild(teamDivName);
                     matchDiv.appendChild(teamDiv);
 
@@ -150,20 +162,14 @@ let dataParamObject = {
                         teamDiv.classList.add(`team__${teamTag}`);
                         teamTag++;
                     }
-
-                    //Ajouter l'écouteur d'évènement sur chaque matchDiv
-                    teamDivName.addEventListener("click", (e) => {
-                        clickToWin(e); //Définie hors de l'évent
-                    });
                 }
                 roundDiv.appendChild(matchDiv);
             }
             treeContainer.appendChild(roundDiv);
         }
-    }
+    };
 
-    //* Event : mettre à jour les inputs et l'arbre en fonction du nombre d'équipes
-
+    //*Event : mettre à jour les inputs et l'arbre en fonction du nombre d'équipes
     teamsSelect.addEventListener("change" , (e) => {
         e.preventDefault();
         teamsCount = e.target.value;
@@ -185,9 +191,7 @@ let dataParamObject = {
 
         for (let round = 0 ; round < rounds ; round++) {
             matchs = teamsCount / 2 ** (round + 1);
-
             for (let match = 1 ; match <= matchs ; match++) {
-
                 for (let team = 1 ; team <= 2 ; team++) {
                     let teamDiv = document.querySelector(`#r${round}-m${match}-t${team}-s`);
                     let inputDiv = document.createElement("input");
@@ -231,17 +235,17 @@ let dataParamObject = {
             removeScoreInputs(teamsCount);
             scoreMode = "no-score";
         }
+
         //Save dans le local Storage
         dataParamObject.scoreMode = scoreMode;
         window.localStorage.setItem("dataParamObject" , JSON.stringify(dataParamObject));
         console.log("dataParamObject" , JSON.stringify(dataParamObject));
     });
-    
 //#endregion
 
 //#region VALIDER LE TOURNOI 
     //* Event : Sélectionner le mode de tirage en fonction du champ draw-mode
-    let mode = "order";
+    let mode = "order"; //Par défaut
     drawMode.addEventListener("change" , (e) => {
         mode = e.target.value;
     });
@@ -275,7 +279,7 @@ let dataParamObject = {
                 shuffle(teamsArray);
             };
 
-            // Tirage des équipes (TIRER PAR ID ET NON PAR CLASS)
+            // Tirage des équipes
             matchs = teamsCount / 2;
             let teamIndex = 0;
 
@@ -286,19 +290,16 @@ let dataParamObject = {
                     teamDivName.innerText = teamsArray[teamIndex];
                     teamIndex++;
 
-                    //Save dans le local Storage
+                    //Save chaque team dans le local Storage
                     dataMatchsObject = {
                         id:`r0-m${match}-t${team}`,
                         name:teamDivName.innerText,
                     }
                     dataMatchs.push(dataMatchsObject);
-                console.log("dataMatchs" , dataMatchs);
+                    console.log("dataMatchs" , dataMatchs);
                 };
             };
-
-            //Save dans le local Storage
-            window.localStorage.setItem("dataMatchs" , JSON.stringify(dataMatchs));
-            // window.localStorage.setItem("dataId" , JSON.stringify(dataMatchs));
+            window.localStorage.setItem("dataMatchs" , JSON.stringify(dataMatchs));            
 
             //Ajoute le nom et la date du tournoi
             let tournamentName = document.querySelector("#tournament-name").value;
@@ -308,7 +309,7 @@ let dataParamObject = {
             document.querySelector(".tree__id__date").innerText = todayDate;
             
             //Save dans le local Storage
-            dataParamObject.tournamentName = tournamentName;
+            dataParamObject.tournamentName = `${tournamentName} - `;
             dataParamObject.tournamentDate = todayDate;
             window.localStorage.setItem("dataParamObject" , JSON.stringify(dataParamObject));
             
@@ -318,6 +319,7 @@ let dataParamObject = {
 //#endregion
 
 //#region ANNULER LE TOURNOI
+
     //* Event : Cliquer sur Annuler
     buttonAnnuler.addEventListener("click" , (e) => {
         teamsArray = [];
@@ -345,6 +347,8 @@ let dataParamObject = {
             tournamentName: "",
             tournamentDate: "",
         };
+        document.querySelector(".tree__id__name").innerText ="";
+        document.querySelector(".tree__id__date").innerText = "";
         console.log("dataParamObject" , JSON.stringify(dataParamObject));
         console.log("dataMatchs" , JSON.stringify(dataMatchs));
     });
@@ -375,7 +379,9 @@ let dataParamObject = {
         const nextId = `r${nextRound.toString()}-m${nextMatch.toString()}-t${nextTeam.toString()}`;
 
          //^ Si le mode "Score" est activé
-         if (scoreModeSelect.value === "score") {
+         console.log("scoreMode = " , scoreMode);
+         if (scoreMode === "score") {
+            console.log("Mode score ok");
 
             //^Contrôle sur les scores
             let currentTeamScore = document.querySelector(`#${currentId} input`).value;
@@ -389,15 +395,19 @@ let dataParamObject = {
                 return 
             }
 
-            //^On fige les inputs et on met en forme les scores validés
-            document.querySelector(`#${currentId} input`).setAttribute("readonly" , "readonly");
-            document.querySelector(`#${currentId} input`).classList.add("input--disabled");
-            document.querySelector(`#${currentId} input`).style.backgroundColor = "lightgreen";
-            document.querySelector(`#${currentOtherTeamId} input`).setAttribute("readonly" , "readonly");
-            document.querySelector(`#${currentOtherTeamId} input`).classList.add("input--disabled");
-            document.querySelector(`#${currentOtherTeamId} input`).style.backgroundColor = "lightcoral";
+            //^Désactivation des matchs terminés
+            console.log("désactivation des matchs")
+            function disabledMatchs(winnerId , loserId) {
+                document.querySelector(`#${winnerId} input`).setAttribute("readonly" , "readonly"); //Plus d'inputs
+                document.querySelector(`#${winnerId} input`).classList.add("input--disabled"); //Mise en forme inputs
+                document.querySelector(`#${winnerId} input`).style.backgroundColor = "lightgreen";//Couleur
+                document.querySelector(`#${loserId} input`).setAttribute("readonly" , "readonly");
+                document.querySelector(`#${loserId} input`).classList.add("input--disabled");
+                document.querySelector(`#${loserId} input`).style.backgroundColor = "lightcoral";
+            }
+            disabledMatchs(currentId , currentOtherTeamId);
 
-            //^Save dans le local Storage
+            //^Save score dans le local Storage
                 //^ Récupérer et sauvegarder le score
                 function saveScoreById(tableau, currentId, currentTeamScore , currentOtherTeamId , currentOtherTeamScore) {
                     const winnerTeam = tableau.find(winnerTeam => winnerTeam.id === currentId);
@@ -428,7 +438,7 @@ let dataParamObject = {
         const winnerTeam = e.currentTarget.parentElement.querySelector("p").innerText;
         document.querySelector(`#${nextId} > p `).innerText = winnerTeam;
 
-        //Save dans le local Storage
+        //Save next round dans le local Storage
         dataMatchsObject = {
             id:nextId,
             name:winnerTeam,
@@ -442,6 +452,7 @@ let dataParamObject = {
     const teamsDiv = document.querySelectorAll("div[id^=r][id$=t1] > p, div[id^=r][id$=t2] > p");   
     teamsDiv.forEach(teamDiv => {
         teamDiv.addEventListener("click", (e) => {
+            console.log("inside EVENT CLICK TO WIN SOLO")
             clickToWin(e);
         });
     });
@@ -479,8 +490,4 @@ let dataParamObject = {
         slider.scrollLeft = scrollLeft - walk;
         console.log(walk);
       });
-//#endregion
-
-//#region IMPRIMER L'ARBRE
-
 //#endregion

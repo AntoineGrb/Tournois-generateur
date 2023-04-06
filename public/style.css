@@ -122,9 +122,6 @@ button {
   color: #fff;
   transform: translateY(-3px);
 }
-#button__valider:active {
-  transform: translateY(-1px);
-}
 
 #button__annuler {
   display: none;
