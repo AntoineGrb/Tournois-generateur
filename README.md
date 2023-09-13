@@ -1,4 +1,4 @@
-# Générateur de tournois 🍿📚🎮
+# Générateur de tournois ⚽🎮
 
 Bienvenue sur mon générateur de tournois **Antcritique** ! Cette application permet de créer facilement un arbre de tournoi pour les petites compétitions sportives ou de jeux-vidéos entre amis !
 
