@@ -31,9 +31,10 @@ Une fois validé, les paramètres se figent. Pour annuler et changer le tournoi,
 ### Le bloc tournoi
 ![image](https://github.com/AntoineGrb/tournois-generateur/assets/119600392/8eaa6a31-d32d-4527-ab14-090a5f6e881b)
 
-L'arbre de tournoi est créé à la validation, avec son nom et toutes les équipes renseignées. 
+L'arbre de tournoi est créé à la validation, avec son nom, la date du jour et toutes les équipes renseignées. 
 Pour passer au tour suivant, cliquer sur le vainqueur du match (ou inscrire les scores + cliquer si le mode score est activé.
-Il est possible de sauvegarder son tournoi en cliquant sur la disquette. 
+Le tournoi est sauvegardé dans le localStorage, il est donc possible de reprendre là ou on en était plus tard, si on reste sur le même appareil.
+Il est également possible de sauvegarder l'image de l'arbre du tournoi en cliquant sur la disquette, pour se rappeler du vainqueur. 
 Have fun !
 
 ## Technologies utilisées 🛠️
