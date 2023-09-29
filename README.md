@@ -4,6 +4,8 @@ Bienvenue sur mon générateur de tournois **Antcritique** ! Cette application p
 
 J'ai uploadé ce site sur Vercel, voici le [lien](https://tournois-generateur.vercel.app/) ! 
 
+L'application est plutôt faite pour être utilisée sur téléphone mais est également calibrée pour les ordis.
+
 ## Présentation 🌟
 
 Je cherchais un projet qui pourrait me faire monter en compétence sur le JavaScript et qui répondrait à un vrai besoin. Je fais souvent des tournois FIFA entre amis, et nous notons les résultats au fur et à mesure sur un papier ou les notes du téléphone. Je me suis dit que ce serait sympa de créer une petite application pour le faire rapidement et pour afficher visuellement l'arbre du tournoi.
