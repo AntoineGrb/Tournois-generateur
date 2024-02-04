@@ -1,10 +1,10 @@
 # Générateur de tournois ⚽🎮
 
-Bienvenue sur mon générateur de tournois **Antcritique** ! Cette application permet de créer facilement un arbre de tournoi pour les petites compétitions sportives ou de jeux-vidéos entre amis !
+Bienvenue sur mon générateur de tournois ! Cette application permet de créer facilement un arbre de tournoi pour les petites compétitions sportives ou de jeux-vidéos entre amis !
 
 J'ai uploadé ce site sur Vercel, voici le [lien](https://tournois-generateur.vercel.app/) ! 
 
-L'application est plutôt faite pour être utilisée sur téléphone mais est également calibrée pour les ordis.
+L'application est prévue pour être utilisée sur téléphone mais est également calibrée pour les versions desktop.
 
 ## Présentation 🌟
 
