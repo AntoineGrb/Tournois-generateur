@@ -1,10 +1,11 @@
 @import "./utils/mediasQueries";
 
 //Variables
-$color-theme: #191825;
-$color-main:#E384FF;
-$color-bis:#865DFF;
-$color-third:#FF9551;
+$color-theme: #191825; //#191825
+$color-main:#E384FF; //#E384FF
+$color-main-hover: #e5adf6; //#C56CFF
+$color-bis:#865DFF; //#865DFF
+$color-third:#FF9551; //#FF9551
 
 //Fonts
 p {
@@ -52,7 +53,7 @@ input:focus , select:focus {
     width:100%;
     max-width: 1000px;
     height: auto;
-    margin-top: 2rem;
+    margin: 2rem auto;
     padding: 2rem 0 1rem 1rem;
     position: relative;
 
@@ -85,7 +86,7 @@ input:focus , select:focus {
     width:100%;
     max-width: 1000px;
     height: auto;
-    margin-top: 1.5rem;
+    margin: 2rem auto;
     padding: 2rem 0 1rem 0.5rem;
     position: relative;
 
@@ -138,10 +139,7 @@ button {
     display: block;
 
     &:hover {
-        background-color: $color-main;
-        box-shadow: 1px 7px 10px $color-third;
-        color: #fff;
-        transform: translateY(-3px);
+        background-color: $color-main-hover;
     }
 }
 

@@ -40,7 +40,7 @@ input:focus, select:focus {
   width: 100%;
   max-width: 1000px;
   height: auto;
-  margin-top: 2rem;
+  margin: 2rem auto;
   padding: 2rem 0 1rem 1rem;
   position: relative;
 }
@@ -69,7 +69,7 @@ input:focus, select:focus {
   width: 100%;
   max-width: 1000px;
   height: auto;
-  margin-top: 1.5rem;
+  margin: 2rem auto;
   padding: 2rem 0 1rem 0.5rem;
   position: relative;
 }
@@ -117,10 +117,7 @@ button {
   display: block;
 }
 #button__valider:hover {
-  background-color: #E384FF;
-  box-shadow: 1px 7px 10px #FF9551;
-  color: #fff;
-  transform: translateY(-3px);
+  background-color: #e5adf6;
 }
 
 #button__annuler {
